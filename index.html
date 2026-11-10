@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0b0d">
+  <meta name="description" content="HISHH Personal Manager - your premium personal command centre">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <title>HISHH Personal Manager</title>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="HISHH home">
+        <span class="brand-mark">H</span><span><b>HISHH</b><small>PERSONAL MANAGER</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav id="nav">
+        <button class="nav-item active" data-page="overview">◈ <span>Overview</span></button>
+        <button class="nav-item" data-page="tasks">✓ <span>Daily tasks</span></button>
+        <button class="nav-item" data-page="business">▣ <span>Business & projects</span></button>
+        <button class="nav-item" data-page="finance">₹ <span>Money manager</span></button>
+        <button class="nav-item" data-page="social">◎ <span>Social planner</span></button>
+        <button class="nav-item" data-page="goals">✧ <span>Long-term goals</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="mini-card"><span class="gold-dot"></span><div><b>Build with purpose</b><small>One step at a time.</small></div></div>
+        <small class="muted">VERSION 1.0 · PERSONAL</small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-brand" id="menuBtn">☰ <b>HISHH</b></button>
+        <div class="breadcrumb">PERSONAL WORKSPACE <span>/</span> <b id="pageLabel">OVERVIEW</b></div>
+        <div class="top-actions"><span class="date-chip" id="todayDate"></span><button class="icon-btn" id="installBtn" hidden>＋ Install</button></div>
+      </header>
+
+      <section class="page active" id="page-overview">
+        <div class="hero">
+          <div class="hero-copy"><div class="eyebrow"><span class="gold-dot"></span> YOUR PERSONAL COMMAND CENTRE</div>
+            <h1>Make your<br><em>next move</em> count.</h1>
+            <p>Plan clearly. Build consistently. Grow intentionally.</p>
+            <button class="gold-btn" data-go="tasks">View today's plan <span>↗</span></button>
+          </div>
+          <div class="hero-orbit"><div class="orbit-ring"></div><div class="orbit-core">H<span>✦</span></div><div class="orbit-caption">DREAM · PLAN · EXECUTE</div></div>
+        </div>
+
+        <div class="section-head"><div><div class="eyebrow">AT A GLANCE</div><h2>Your overview</h2></div><span class="muted small">Live from this device</span></div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon">✓</span><small>TASKS COMPLETED</small><strong id="statTasks">0/0</strong><div class="stat-foot">Today's progress</div></article>
+          <article class="stat-card"><span class="stat-icon">₹</span><small>NET THIS MONTH</small><strong id="statNet">₹0</strong><div class="stat-foot">Income minus expenses</div></article>
+          <article class="stat-card"><span class="stat-icon">▣</span><small>ACTIVE PROJECTS</small><strong id="statProjects">0</strong><div class="stat-foot">In your workspace</div></article>
+          <article class="stat-card"><span class="stat-icon">✧</span><small>ACTIVE GOALS</small><strong id="statGoals">0</strong><div class="stat-foot">Long-term direction</div></article>
+        </div>
+
+        <div class="content-grid">
+          <article class="panel"><div class="panel-head"><div><div class="eyebrow">FOCUS FOR TODAY</div><h3>Daily mission</h3></div><button class="text-btn" data-go="tasks">All tasks ↗</button></div><div id="overviewTasks" class="task-preview empty">No tasks yet. Add your first task.</div></article>
+          <article class="panel briefing"><div class="panel-head"><div><div class="eyebrow">DAILY BRIEFING</div><h3>Your 8 AM focus</h3></div><span class="pill">PERSONAL</span></div><p id="briefText">A good day starts with one clear priority. Choose the most important task, protect time for learning, and take one small step toward your business.</p><button class="outline-btn" id="newBrief">Generate today's focus</button><small class="muted">Your scheduled ChatGPT briefing is separate from this offline app.</small></article>
+        </div>
+        <div class="quote-strip"><span>“</span><p>Consistency turns small creative steps into something real.</p><b>HISHH PRINCIPLE</b></div>
+      </section>
+
+      <section class="page" id="page-tasks">
+        <div class="page-intro"><div class="eyebrow">EXECUTION</div><h1>Daily <em>tasks</em></h1><p>Keep today's priorities visible and manageable.</p></div>
+        <div class="panel">
+          <form id="taskForm" class="add-form"><input id="taskInput" required maxlength="120" placeholder="Add a task (e.g. Finish one portfolio design)"><select id="taskPriority"><option>Normal</option><option>High</option><option>Low</option></select><button class="gold-btn">Add task +</button></form>
+          <div class="progress-line"><div><b id="taskProgressText">0 of 0 complete</b><span id="taskPercent">0%</span></div><div class="progress-track"><i id="taskProgressBar"></i></div></div>
+          <div id="taskList" class="list"></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-business">
+        <div class="page-intro"><div class="eyebrow">BUILD & SHIP</div><h1>Business & <em>projects</em></h1><p>Track your brands, ideas and active work in one place.</p></div>
+        <div class="panel">
+          <form id="projectForm" class="add-form"><input id="projectInput" required maxlength="100" placeholder="Project or business name"><select id="projectStatus"><option>Planning</option><option>In progress</option><option>On hold</option><option>Completed</option></select><button class="gold-btn">Add project +</button></form>
+          <div id="projectList" class="project-grid"></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-finance">
+        <div class="page-intro"><div class="eyebrow">MONEY WITH INTENTION</div><h1>Money <em>manager</em></h1><p>Record what comes in and what goes out. Figures stay on this device.</p></div>
+        <div class="stats-grid finance-stats"><article class="stat-card"><small>TOTAL INCOME</small><strong id="financeIncome">₹0</strong></article><article class="stat-card"><small>TOTAL EXPENSES</small><strong id="financeExpense">₹0</strong></article><article class="stat-card"><small>NET BALANCE</small><strong id="financeBalance">₹0</strong></article></div>
+        <div class="panel"><form id="moneyForm" class="add-form money-form"><input id="moneyTitle" required maxlength="90" placeholder="Description (e.g. Logo design payment)"><input id="moneyAmount" type="number" min="1" step="0.01" required placeholder="Amount ₹"><select id="moneyType"><option value="income">Income</option><option value="expense">Expense</option></select><button class="gold-btn">Record +</button></form><div id="moneyList" class="list"></div></div>
+        <p class="note">This is a simple personal record, not a bank account or financial advice. Ask a parent/guardian before setting up payment or financial accounts that have age requirements.</p>
+      </section>
+
+      <section class="page" id="page-social">
+        <div class="page-intro"><div class="eyebrow">CREATE & CONNECT</div><h1>Social <em>planner</em></h1><p>Organise content ideas before publishing.</p></div>
+        <div class="panel"><form id="socialForm" class="add-form"><input id="socialTitle" required maxlength="120" placeholder="Content idea or post title"><select id="socialType"><option>Reel</option><option>Carousel</option><option>Story</option><option>Post</option></select><button class="gold-btn">Add idea +</button></form><div id="socialList" class="list"></div></div>
+      </section>
+
+      <section class="page" id="page-goals">
+        <div class="page-intro"><div class="eyebrow">THE BIGGER PICTURE</div><h1>Long-term <em>goals</em></h1><p>Turn distant dreams into visible milestones.</p></div>
+        <div class="panel"><form id="goalForm" class="add-form"><input id="goalTitle" required maxlength="120" placeholder="Your goal (e.g. Build a strong creative portfolio)"><input id="goalDate" type="date" aria-label="Target date"><button class="gold-btn">Add goal +</button></form><div id="goalList" class="goal-list"></div></div>
+      </section>
+
+      <footer><span>HISHH PERSONAL MANAGER</span><span>Made for focus · Data saved on this device</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
